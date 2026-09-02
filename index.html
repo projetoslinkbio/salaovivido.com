@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Vívido Studio</title>
+<style>
+  :root{
+    --bg: #150c10;
+    --pink: #b8375a;
+    --orange: #d9a441;
+    --purple: #6e3b5c;
+    --text: #f4ece9;
+    --text-dim: #b09aa0;
+    --glass: rgba(255,255,255,0.05);
+    --glass-border: rgba(255,255,255,0.12);
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  @media (prefers-reduced-motion: reduce){
+    * { animation: none !important; transition: none !important; }
+  }
+
+  html, body{ height:100%; }
+
+  body{
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100dvh;
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .bg-image{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image: url('https://doram.shop/wp-content/uploads/2026/09/images-10.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.28;
+  }
+
+  .overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(120% 90% at 50% 40%, transparent 0%, rgba(21,12,16,0.6) 55%, rgba(21,12,16,0.94) 100%),
+      linear-gradient(180deg, rgba(21,12,16,0.35) 0%, rgba(21,12,16,0.55) 45%, rgba(21,12,16,0.82) 100%);
+  }
+
+  .glow{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: radial-gradient(140% 100% at 50% -10%, #2e1520 0%, transparent 60%);
+  }
+  .blob{
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.4;
+    animation: drift 16s ease-in-out infinite alternate;
+  }
+  .blob-1{
+    width: 60vmax; height: 60vmax;
+    top: -24vmax; left: -20vmax;
+    background: radial-gradient(circle, var(--pink), transparent 65%);
+  }
+  .blob-2{
+    width: 50vmax; height: 50vmax;
+    bottom: -20vmax; right: -18vmax;
+    background: radial-gradient(circle, var(--purple), transparent 65%);
+    animation-delay: -8s;
+  }
+  .blob-3{
+    width: 36vmax; height: 36vmax;
+    top: 30%; right: -14vmax;
+    background: radial-gradient(circle, var(--orange), transparent 65%);
+    animation-delay: -4s;
+    animation-duration: 12s;
+  }
+  @keyframes drift{
+    from{ transform: translate(0,0) scale(1); }
+    to{ transform: translate(4vmax, 5vmax) scale(1.08); }
+  }
+
+  main{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 48px 26px 24px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .avatar{
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg, var(--pink), var(--orange));
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: #150c10;
+    box-shadow: 0 0 40px -10px rgba(184,55,90,0.5);
+    margin-bottom: 18px;
+  }
+
+  .name{
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+  }
+
+  .role{
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 30px;
+  }
+
+  h1{
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    max-width: 19ch;
+  }
+
+  .sub{
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 32ch;
+    margin-top: 14px;
+    margin-bottom: 30px;
+  }
+
+  .cta{
+    width: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+    padding: 17px 20px;
+    border-radius: 16px;
+    background: linear-gradient(120deg, var(--pink), var(--orange));
+    color: #150c10;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration:none;
+    box-shadow: 0 10px 28px -10px rgba(184,55,90,0.45);
+    transition: transform 0.15s ease;
+    margin-bottom: 12px;
+  }
+  .cta:active{ transform: scale(0.97); }
+  .cta:focus-visible{ outline: 2px solid var(--pink); outline-offset: 3px; }
+  .cta svg{ width: 19px; height: 19px; flex-shrink:0; }
+
+  .services{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+    text-decoration:none;
+    font-size: 14.5px;
+    font-weight: 500;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .service:hover{
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.2);
+  }
+  .service:focus-visible{ outline: 2px solid var(--pink); outline-offset: 2px; }
+  .service .dot{
+    display: none;
+  }
+  .service.corte .dot{ background: var(--pink); }
+  .service.cor .dot{ background: var(--orange); }
+  .service.escova .dot{ background: var(--purple); }
+  .service span:first-child{ display:flex; align-items:center; gap:10px; }
+
+  footer{
+    position: relative;
+    z-index: 2;
+    padding: 22px 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(183,156,180,0.6);
+  }
+  footer span{ color: var(--text-dim); font-weight: 500; }
+</style>
+</head>
+<body>
+
+  <div class="bg-image"></div>
+  <div class="glow">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="overlay"></div>
+
+  <main>
+    <div class="avatar">VS</div>
+    <div class="name">Vívido Studio</div>
+    <div class="role">Corte · Coloração · Escova</div>
+
+    <h1>Sua transformação começa aqui</h1>
+    <p class="sub">Agenda aberta essa semana. Chama no WhatsApp e garante seu horário.</p>
+
+    <a class="cta" href="https://wa.me/5500000000000?text=Oi!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20V%C3%ADvido%20Studio" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.01 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.43 1.27 4.87L2 22l5.28-1.38A9.94 9.94 0 0 0 12.01 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.84 14.24c-.25.7-1.45 1.35-2 1.44-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.63-2.96-1.28-4.89-4.25-5.04-4.45-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.25.6.85 2.07.92 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.72-.17 1.42z"/></svg>
+      Agendar no WhatsApp
+    </a>
+  </main>
+
+  <footer>Feito por <span>Clique Bio</span></footer>
+
+</body>
+</html>
