@@ -92,7 +92,44 @@
     to{ transform: translate(4vmax, 5vmax) scale(1.08); }
   }
 
-  main{
+  /* fios de cabelo decorativos flutuando no fundo */
+  .hair{
+    position: fixed;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .hair-1{
+    top: 6%;
+    right: -4%;
+    width: 46vw;
+    max-width: 220px;
+    animation: sway 7s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  .hair-2{
+    bottom: 10%;
+    left: -6%;
+    width: 40vw;
+    max-width: 190px;
+    animation: sway 9s ease-in-out infinite reverse;
+    transform-origin: bottom center;
+  }
+  @keyframes sway{
+    0%, 100%{ transform: rotate(-2.5deg); }
+    50%{ transform: rotate(2.5deg); }
+  }
+
+  /* fio decorativo dentro do botão */
+  .strand{
+    display: inline-flex;
+    align-items: center;
+    animation: strand-wave 3s ease-in-out infinite;
+  }
+  @keyframes strand-wave{
+    0%, 100%{ transform: translateY(0); }
+    50%{ transform: translateY(-1.5px); }
+  }
     position: relative;
     z-index: 2;
     width: 100%;
@@ -114,13 +151,15 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background: linear-gradient(135deg, var(--pink), var(--orange));
-    font-family: 'Sora', 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 26px;
-    color: #150c10;
+    overflow: hidden;
     box-shadow: 0 0 40px -10px rgba(184,55,90,0.5);
     margin-bottom: 18px;
+  }
+  .avatar img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .name{
@@ -231,8 +270,31 @@
   </div>
   <div class="overlay"></div>
 
+  <svg class="hair hair-1" viewBox="0 0 200 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M100 0C90 60 130 90 110 150C95 200 140 230 120 320" stroke="url(#g1)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M140 10C132 70 165 100 148 160C136 205 172 240 155 320" stroke="url(#g1)" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
+    <path d="M65 5C58 65 90 95 75 155C64 200 98 235 82 320" stroke="url(#g1)" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="0" y2="320" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#d9a441"/>
+        <stop offset="1" stop-color="#b8375a" stop-opacity="0.2"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <svg class="hair hair-2" viewBox="0 0 180 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20 260C32 200 0 170 18 115C33 70 4 40 22 0" stroke="url(#g2)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M55 260C64 200 36 172 52 118C64 75 40 45 56 5" stroke="url(#g2)" stroke-width="1.8" stroke-linecap="round" opacity="0.65"/>
+    <defs>
+      <linearGradient id="g2" x1="0" y1="260" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#b8375a"/>
+        <stop offset="1" stop-color="#d9a441" stop-opacity="0.2"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
   <main>
-    <div class="avatar">VS</div>
+    <div class="avatar"><img src="https://doram.shop/wp-content/uploads/2026/09/ChatGPT-Image-1-de-set.-de-2026-23_48_29.png" alt="Vívido Studio"></div>
     <div class="name">Vívido Studio</div>
     <div class="role">Corte · Coloração · Escova</div>
 
@@ -242,6 +304,7 @@
     <a class="cta" href="https://wa.me/5500000000000?text=Oi!%20Quero%20agendar%20um%20hor%C3%A1rio%20no%20V%C3%ADvido%20Studio" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.01 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.43 1.27 4.87L2 22l5.28-1.38A9.94 9.94 0 0 0 12.01 22c5.52 0 10-4.48 10-10s-4.48-10-10-10zm5.84 14.24c-.25.7-1.45 1.35-2 1.44-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.68-.63-2.96-1.28-4.89-4.25-5.04-4.45-.15-.2-1.2-1.6-1.2-3.05 0-1.45.76-2.16 1.03-2.46.27-.3.6-.37.8-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.25.6.85 2.07.92 2.22.07.15.12.33.02.53-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.36 1.45.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.27.1 1.73.82 2.03.97.3.15.5.22.57.35.08.13.08.72-.17 1.42z"/></svg>
       Agendar no WhatsApp
+      <svg class="strand" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 2C4 5 1 6 3 9C5 12 2 13 4 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
     </a>
   </main>
 
